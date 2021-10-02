@@ -24,7 +24,7 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   final date2 = DateTime.now();
   int difference = 0;
-  double progressPercent = 0.6;
+  double progressPercent = 0.0;
 
   getPercent() async {
     var prefs = await SharedPreferences.getInstance();
@@ -43,9 +43,17 @@ class _DetailScreenState extends State<DetailScreen> {
   }
 
   @override
+  void initState() {
+    getPercent();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.grey[200],
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -69,7 +77,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       animateFromLastPercent: true,
                       percent: progressPercent / 100,
                       center: Text(
-                        "${progressPercent.toString()}%",
+                        "${progressPercent.ceil().toString()}%",
                         style: TextStyle(
                             fontSize: 55, fontWeight: FontWeight.bold),
                       ),
@@ -89,13 +97,18 @@ class _DetailScreenState extends State<DetailScreen> {
                       child: SizedBox(
                         width: 250,
                         child: ElevatedButton(
-                          child: Text("Relapse - Don't loose hope "),
+                          child: Text("Relapse - Don't loose hope"),
                           onPressed: () async {
                             var prefs = await SharedPreferences.getInstance();
-                            prefs.remove('goal');
+                            // prefs.remove('task');
+                            // prefs.remove('goal');
+                            prefs.remove('startDate');
+                            // print(prefs.getString('task'));
+                            //print(prefs.getString('goal'));
                             Fluttertoast.showToast(
-                              msg: "Goal relapsed! Let's start all over again",
-                            );
+                                msg:
+                                    "Habit relapsed, let's start all over again");
+                            //Get.off(() => SelectHabitScreen());
                           },
                           style: kButtonStyle,
                         ),
@@ -106,17 +119,18 @@ class _DetailScreenState extends State<DetailScreen> {
                       child: SizedBox(
                         width: 250,
                         child: ElevatedButton(
-                          child: Text('Change a new habit'),
+                          child: Text("Delete Habit"),
                           onPressed: () async {
                             var prefs = await SharedPreferences.getInstance();
                             prefs.remove('task');
                             prefs.remove('goal');
+                            prefs.remove('startDate');
                             print(prefs.getString('task'));
                             print(prefs.getString('goal'));
                             Fluttertoast.showToast(
                                 msg:
                                     'Habit has been deleted. Choose a new habit to get going!');
-                            Get.to(() => SelectHabitScreen());
+                            Get.off(() => SelectHabitScreen());
                           },
                           style: kButtonStyle,
                         ),

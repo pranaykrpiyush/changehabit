@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:group_button/group_button.dart';
 import 'package:get/get.dart';
+import 'package:habbittracker/constants.dart';
 import 'package:habbittracker/detail_screen.dart';
 import 'package:habbittracker/main_screen.dart';
 import 'package:habbittracker/settaskgoal.dart';
@@ -34,24 +35,22 @@ class _SetGoalState extends State<SetGoal> {
     false,
   ];
   setSelectedButtonColor(int j) {
-    print(selected[j]);
-    if (selected[j]) {
-      setState(() {
-        buttonColor[j] = unselectedColor;
-      });
-      selected[j] = !selected[j];
-      return;
-    }
     for (int i = 0; i < 6; i++) {
       if (selected[i] == true) {
-        return;
+        setState(() {
+          buttonColor[i] = unselectedColor;
+        });
       }
+      selected[i] = false;
     }
+    selected[j] = true;
 
+    //if (selected[j]) {
     setState(() {
       buttonColor[j] = selectedColor;
     });
-    selected[j] = !selected[j];
+    //selected[j] = !selected[j];
+    return;
   }
 
   Color unselectedColor = Colors.black12;
@@ -79,6 +78,7 @@ class _SetGoalState extends State<SetGoal> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.grey[200],
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -125,7 +125,7 @@ class _SetGoalState extends State<SetGoal> {
                           ),
                         ),
                         SizedBox(
-                          width: 160,
+                          width: 180,
                           child: TextButton(
                             style: ButtonStyle(
                               backgroundColor:
@@ -245,8 +245,9 @@ class _SetGoalState extends State<SetGoal> {
             Padding(
               padding: EdgeInsets.only(top: 30),
               child: SizedBox(
-                width: 100,
+                width: 200,
                 child: ElevatedButton(
+                  style: kButtonStyle,
                   child: Text('Track Now'),
                   onPressed: () async {
                     int day = getDays();

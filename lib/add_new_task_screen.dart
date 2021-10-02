@@ -5,8 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
-import 'new_main_screen.dart';
-
 class NewTaskScreen extends StatefulWidget {
   const NewTaskScreen({Key? key}) : super(key: key);
 
@@ -33,71 +31,75 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: Colors.grey[200],
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         title: Text('Add a new Task'),
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.blue[800],
         elevation: 20,
       ),
       body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 50.0),
-            child: SizedBox(
-              width: 300,
-              height: 200,
-              child: TextFormField(
-                controller: taskNameCtrl,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(style: BorderStyle.solid)),
-                  hintText: 'Enter you goal',
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 50.0),
+              child: SizedBox(
+                width: 300,
+                height: 200,
+                child: TextFormField(
+                  controller: taskNameCtrl,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(style: BorderStyle.solid)),
+                    hintText: 'Enter you goal',
+                  ),
                 ),
               ),
             ),
-          ),
-          // SizedBox(
-          //   height: 200,
-          //   width: 300,
-          //   child: TextFormField(
-          //     controller: taskDurationCtrl,
-          //     decoration: InputDecoration(
-          //       border: OutlineInputBorder(
-          //           borderSide: BorderSide(style: BorderStyle.solid)),
-          //       hintText: 'Duration of days',
-          //     ),
-          //   ),
-          // ),
+            // SizedBox(
+            //   height: 200,
+            //   width: 300,
+            //   child: TextFormField(
+            //     controller: taskDurationCtrl,
+            //     decoration: InputDecoration(
+            //       border: OutlineInputBorder(
+            //           borderSide: BorderSide(style: BorderStyle.solid)),
+            //       hintText: 'Duration of days',
+            //     ),
+            //   ),
+            // ),
 
-          SizedBox(
-            width: 200,
-            height: 50,
-            child: TextButton(
-              child: Text(
-                'Set Goal',
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () async {
-                saveTask();
-                SharedPreferences prefs = await SharedPreferences.getInstance();
-                String msg = 's';
-                msg = prefs.getString('task')!;
+            SizedBox(
+              width: 200,
+              height: 50,
+              child: TextButton(
+                child: Text(
+                  'Set Goal',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () async {
+                  saveTask();
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  String msg = 's';
+                  msg = prefs.getString('task')!;
 
-                Fluttertoast.showToast(msg: msg);
-                Get.to(() => SetGoal(
-                      habit: taskNameCtrl.text,
-                    ));
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.blue[800]),
+                  Fluttertoast.showToast(msg: msg);
+                  Get.to(() => SetGoal(
+                        habit: taskNameCtrl.text,
+                      ));
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue[800]),
+                ),
               ),
-            ),
-          )
-        ],
-      )),
+            )
+          ],
+        ),
+      ),
     ));
   }
 }

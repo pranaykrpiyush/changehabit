@@ -18,11 +18,8 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(Duration(seconds: 2), () async {
       var prefs = await SharedPreferences.getInstance();
-      if (prefs.getInt('goal') == 7 ||
-          prefs.getInt('goal') == 21 ||
-          prefs.getInt('goal') == 42 ||
-          prefs.getInt('goal') == 84 ||
-          prefs.getInt('goal') == 168) {
+      int? value = prefs.getInt('goal');
+      if (value != null && (value >= 1 && value <= 10000)) {
         Get.to(() => DetailScreen(
             habit: prefs.getString('task')!, days: prefs.getInt('goal')!));
       } else {

@@ -70,24 +70,33 @@ class _SelectHabitScreenState extends State<SelectHabitScreen> {
 
   setSelectedButtonColor(int j) {
     print(selected[j]);
-    if (selected[j]) {
-      setState(() {
-        buttonColor[j] = unselectedColor;
-      });
-      selected[j] = !selected[j];
-      return;
-    }
     for (int i = 0; i < 10; i++) {
       if (selected[i] == true) {
-        return;
+        setState(() {
+          buttonColor[i] = unselectedColor;
+        });
       }
+      selected[i] = false;
     }
+    selected[j] = true;
 
+    //if (selected[j]) {
     setState(() {
       buttonColor[j] = selectedColor;
     });
-    selected[j] = !selected[j];
+    //selected[j] = !selected[j];
+    return;
   }
+  //for (int i = 0; i < 10; i++) {
+  // if (selected[i] == true) {
+  //      return;
+  //}
+  //}
+
+  //setState(() {
+  // buttonColor[j] = selectedColor;
+  //});
+  //selected[j] = !selected[j];
 
   Color unselectedColor = Colors.black12;
   Color? selectedColor = Colors.blue[800];
@@ -108,329 +117,323 @@ class _SelectHabitScreenState extends State<SelectHabitScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.grey[200],
         body: SingleChildScrollView(
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 40.0, left: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        'First Step to Boost Your Life',
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 40.0, left: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      'First Step to Boost Your Life',
+                      style:
+                          TextStyle(fontSize: 65, fontWeight: FontWeight.w800),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Choose Habit',
                         style: TextStyle(
-                            fontSize: 65, fontWeight: FontWeight.w800),
+                            fontSize: 13, fontWeight: FontWeight.bold),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Choose Habit',
-                          style: TextStyle(
-                              fontSize: 13, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 20),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 140,
-                                    child: TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                buttonColor[0]),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(6))),
-                                      ),
-                                      child: Text(
-                                        'Daily 30 min walk',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      onPressed: () {
-                                        setSelectedButtonColor(0);
-                                        //selected[0] = !selected[0];
-                                      },
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 20),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 140,
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              buttonColor[0]),
+                                      shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(6))),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 140,
-                                    child: TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                buttonColor[1]),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(6))),
-                                      ),
-                                      child: Text(
-                                        'No Porn',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      onPressed: () {
-                                        print(selected[1]);
-                                        setSelectedButtonColor(1);
-                                        //selected[1] = !selected[1];
-                                      },
+                                    child: Text(
+                                      'Daily 30 min walk',
+                                      style: TextStyle(color: Colors.black),
                                     ),
+                                    onPressed: () {
+                                      setSelectedButtonColor(0);
+                                      //selected[0] = !selected[0];
+                                    },
                                   ),
-                                ],
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  SizedBox(
-                                    width: 140,
-                                    child: TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                buttonColor[2]),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(6))),
-                                      ),
-                                      child: Text(
-                                        'Write 30 min daily',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      onPressed: () {
-                                        setSelectedButtonColor(2);
-                                        //selected[2] = !selected[2];
-                                      },
+                                ),
+                                SizedBox(
+                                  width: 140,
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              buttonColor[1]),
+                                      shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(6))),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 140,
-                                    child: TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                buttonColor[3]),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(6))),
-                                      ),
-                                      child: Text(
-                                        'Intraday profit',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      onPressed: () {
-                                        setSelectedButtonColor(3);
-                                        //selected[3] = !selected[3];
-                                      },
+                                    child: Text(
+                                      'No Porn',
+                                      style: TextStyle(color: Colors.black),
                                     ),
+                                    onPressed: () {
+                                      print(selected[1]);
+                                      setSelectedButtonColor(1);
+                                      //selected[1] = !selected[1];
+                                    },
                                   ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  SizedBox(
-                                    width: 140,
-                                    child: TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                buttonColor[4]),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(6))),
-                                      ),
-                                      child: Text(
-                                        'Sleep 6-7 hrs daily',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      onPressed: () {
-                                        setSelectedButtonColor(4);
-                                        //selected[4] = !selected[4];
-                                      },
+                                ),
+                              ],
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SizedBox(
+                                  width: 140,
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              buttonColor[2]),
+                                      shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(6))),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 140,
-                                    child: TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                buttonColor[5]),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(6))),
-                                      ),
-                                      child: Text(
-                                        'Read an hour daily',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      onPressed: () {
-                                        setSelectedButtonColor(5);
-                                        //selected[5] = !selected[5];
-                                      },
+                                    child: Text(
+                                      'Write 30 min daily',
+                                      style: TextStyle(color: Colors.black),
                                     ),
+                                    onPressed: () {
+                                      setSelectedButtonColor(2);
+                                      //selected[2] = !selected[2];
+                                    },
                                   ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  SizedBox(
-                                    width: 140,
-                                    child: TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                buttonColor[6]),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(6))),
-                                      ),
-                                      child: Text(
-                                        'Do Charity',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      onPressed: () {
-                                        setSelectedButtonColor(6);
-                                        //selected[6] = !selected[6];
-                                      },
+                                ),
+                                SizedBox(
+                                  width: 140,
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              buttonColor[3]),
+                                      shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(6))),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 140,
-                                    child: TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                buttonColor[7]),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(6))),
-                                      ),
-                                      child: Text(
-                                        'Meditate Daily',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      onPressed: () {
-                                        setSelectedButtonColor(7);
-                                        //selected[7] = !selected[7];
-                                      },
+                                    child: Text(
+                                      'Intraday profit',
+                                      style: TextStyle(color: Colors.black),
                                     ),
+                                    onPressed: () {
+                                      setSelectedButtonColor(3);
+                                      //selected[3] = !selected[3];
+                                    },
                                   ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  SizedBox(
-                                    width: 180,
-                                    child: TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                buttonColor[8]),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(6))),
-                                      ),
-                                      child: Text(
-                                        'Wake up Before sunrise',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      onPressed: () {
-                                        setSelectedButtonColor(8);
-                                        //selected[8] = !selected[8];
-                                      },
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SizedBox(
+                                  width: 160,
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              buttonColor[4]),
+                                      shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(6))),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 140,
-                                    child: TextButton(
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                buttonColor[9]),
-                                        shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(6))),
-                                      ),
-                                      child: Text(
-                                        'Other habit',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      onPressed: () {
-                                        setSelectedButtonColor(9);
-                                        //selected[9] = !selected[9];
-                                      },
+                                    child: Text(
+                                      'Sleep 6-7 hrs daily',
+                                      style: TextStyle(color: Colors.black),
                                     ),
+                                    onPressed: () {
+                                      setSelectedButtonColor(4);
+                                      //selected[4] = !selected[4];
+                                    },
                                   ),
-                                ],
-                              ),
-                            ],
-                          )),
-                      Padding(
-                        padding: EdgeInsets.only(top: 30, right: 20),
-                        child: SizedBox(
-                          width: 100,
-                          child: ElevatedButton(
-                            child: Text('Continue'),
-                            onPressed: () async {
-                              String habit = getHabit();
-                              print(habit);
-                              if (habit == "Other Habit") {
-                                Get.off(() => NewTaskScreen());
+                                ),
+                                SizedBox(
+                                  width: 140,
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              buttonColor[5]),
+                                      shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(6))),
+                                    ),
+                                    child: Text(
+                                      'Read an hour daily',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    onPressed: () {
+                                      setSelectedButtonColor(5);
+                                      //selected[5] = !selected[5];
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SizedBox(
+                                  width: 140,
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              buttonColor[6]),
+                                      shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(6))),
+                                    ),
+                                    child: Text(
+                                      'Do Charity',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    onPressed: () {
+                                      setSelectedButtonColor(6);
+                                      //selected[6] = !selected[6];
+                                    },
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 140,
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              buttonColor[7]),
+                                      shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(6))),
+                                    ),
+                                    child: Text(
+                                      'Meditate Daily',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    onPressed: () {
+                                      setSelectedButtonColor(7);
+                                      //selected[7] = !selected[7];
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SizedBox(
+                                  width: 180,
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              buttonColor[8]),
+                                      shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(6))),
+                                    ),
+                                    child: Text(
+                                      'Wake up Before sunrise',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    onPressed: () {
+                                      setSelectedButtonColor(8);
+                                      //selected[8] = !selected[8];
+                                    },
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 140,
+                                  child: TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              buttonColor[9]),
+                                      shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(6))),
+                                    ),
+                                    child: Text(
+                                      'Other habit',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    onPressed: () {
+                                      setSelectedButtonColor(9);
+                                      //selected[9] = !selected[9];
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )),
+                    Padding(
+                      padding: EdgeInsets.only(top: 30, right: 20),
+                      child: SizedBox(
+                        width: 150,
+                        child: ElevatedButton(
+                          child: Text('Continue'),
+                          onPressed: () async {
+                            String habit = getHabit();
+                            print(habit);
+                            if (habit == "Other Habit") {
+                              Get.off(() => NewTaskScreen());
+                            } else {
+                              if (habit == "a") {
+                                Fluttertoast.showToast(
+                                    msg: "Please choose a habit");
                               } else {
-                                if (habit == "a") {
-                                  Fluttertoast.showToast(
-                                      msg: "Please choose a habit");
+                                var prefs =
+                                    await SharedPreferences.getInstance();
+                                if (prefs.getInt('goal') == 7 ||
+                                    prefs.getInt('goal') == 21 ||
+                                    prefs.getInt('goal') == 42 ||
+                                    prefs.getInt('goal') == 84 ||
+                                    prefs.getInt('goal') == 168) {
+                                  Get.off(() => DetailScreen(
+                                      habit: prefs.getString('task')!,
+                                      days: prefs.getInt('goal')!));
                                 } else {
-                                  var prefs =
-                                      await SharedPreferences.getInstance();
-                                  if (prefs.getInt('goal') == 7 ||
-                                      prefs.getInt('goal') == 21 ||
-                                      prefs.getInt('goal') == 42 ||
-                                      prefs.getInt('goal') == 84 ||
-                                      prefs.getInt('goal') == 168) {
-                                    Get.off(() => DetailScreen(
-                                        habit: prefs.getString('task')!,
-                                        days: prefs.getInt('goal')!));
-                                  } else {
-                                    Get.to(() => SetGoal(
-                                          habit: habit,
-                                        ));
-                                  }
+                                  Get.off(() => SetGoal(
+                                        habit: habit,
+                                      ));
                                 }
                               }
-                            },
-                            style: kButtonStyle,
-                          ),
+                            }
+                          },
+                          style: kButtonStyle,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
