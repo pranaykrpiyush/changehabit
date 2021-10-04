@@ -23,8 +23,7 @@ dependencies:
   introduction_screen: ^2.1.0
   gradient_widgets: ^0.6.0
   group_button: ^3.1.0
-  firebase_messaging: ^10.0.8
-  firebase_core: ^1.7.0
+
 
 
   flutter_overboard: ^2.0.1
