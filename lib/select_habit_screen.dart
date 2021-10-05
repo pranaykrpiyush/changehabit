@@ -402,7 +402,7 @@ class _SelectHabitScreenState extends State<SelectHabitScreen> {
                             String habit = getHabit();
                             print(habit);
                             if (habit == "Other Habit") {
-                              Get.off(() => NewTaskScreen());
+                              Get.to(() => NewTaskScreen());
                             } else {
                               if (habit == "a") {
                                 Fluttertoast.showToast(
