@@ -85,6 +85,14 @@ class _DetailScreenState extends State<DetailScreen> {
                       progressColor: Colors.blue[700],
                     ),
                     Padding(
+                      padding: EdgeInsets.all(20),
+                      child: Text(
+                        '$difference days out of ${widget.days} completed',
+                        style: TextStyle(
+                            fontSize: 33, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Text(
                         "Keep going on",
