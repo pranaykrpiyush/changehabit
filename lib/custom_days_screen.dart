@@ -37,80 +37,72 @@ class _CustomDaysScreenState extends State<CustomDaysScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/index.jpg'),
-            fit: BoxFit.fill,
+      backgroundColor: Colors.grey[200],
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(48.0),
+            child: TextFormField(
+              controller: daysCtrl,
+              keyboardType: TextInputType.number,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              decoration: InputDecoration(
+                label: Text('Number of days'),
+                border: OutlineInputBorder(
+                    borderSide: BorderSide(style: BorderStyle.solid)),
+                hintText: 'Enter No of days',
+              ),
+            ),
           ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(48.0),
-              child: TextFormField(
-                controller: daysCtrl,
-                keyboardType: TextInputType.number,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                decoration: InputDecoration(
-                  label: Text('Number of days'),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(style: BorderStyle.solid)),
-                  hintText: 'Enter No of days',
+          Padding(
+            padding: const EdgeInsets.all(28.0),
+            child: SizedBox(
+              width: 200,
+              height: 50,
+              child: TextButton(
+                child: Text(
+                  'Save Days',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () {
+                  saveTask();
+                  print(int.parse(daysCtrl.text));
+                  Get.off(() => DetailScreen(
+                      habit: widget.habit, days: int.parse(daysCtrl.text)));
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue[800]),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(28.0),
-              child: SizedBox(
-                width: 200,
-                height: 50,
-                child: TextButton(
-                  child: Text(
-                    'Save Days',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () {
-                    saveTask();
-                    print(int.parse(daysCtrl.text));
-                    Get.off(() => DetailScreen(
-                        habit: widget.habit, days: int.parse(daysCtrl.text)));
-                  },
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(Colors.blue[800]),
-                  ),
-                ),
-              ),
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.all(28.0),
-            //   child: SizedBox(
-            //     width: 200,
-            //     height: 50,
-            //     child: TextButton(
-            //       child: Text(
-            //         'Set Days',
-            //         style: TextStyle(color: Colors.white),
-            //       ),
-            //       onPressed: () async {
-            //         SharedPreferences prefs =
-            //             await SharedPreferences.getInstance();
-            //         String msg = 's';
-            //         msg = prefs.getString('days')!;
-            //
-            //         Fluttertoast.showToast(msg: msg);
-            //
-            //       },
-            //       style: ButtonStyle(
-            //         backgroundColor: MaterialStateProperty.all(Colors.lightBlue),
-            //       ),
-            //     ),
-            //   ),
-            // )
-          ],
-        ),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(28.0),
+          //   child: SizedBox(
+          //     width: 200,
+          //     height: 50,
+          //     child: TextButton(
+          //       child: Text(
+          //         'Set Days',
+          //         style: TextStyle(color: Colors.white),
+          //       ),
+          //       onPressed: () async {
+          //         SharedPreferences prefs =
+          //             await SharedPreferences.getInstance();
+          //         String msg = 's';
+          //         msg = prefs.getString('days')!;
+          //
+          //         Fluttertoast.showToast(msg: msg);
+          //
+          //       },
+          //       style: ButtonStyle(
+          //         backgroundColor: MaterialStateProperty.all(Colors.lightBlue),
+          //       ),
+          //     ),
+          //   ),
+          // )
+        ],
       ),
     ));
   }
