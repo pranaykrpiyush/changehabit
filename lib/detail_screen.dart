@@ -40,6 +40,14 @@ class _DetailScreenState extends State<DetailScreen> {
 
     print("percent" + progressPercent.toString());
     print(difference);
+    if (difference == widget.days) {
+      showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+                title: Text('Goal Achieved'),
+                content: Text('Yay! You have made it'),
+              ));
+    }
   }
 
   @override

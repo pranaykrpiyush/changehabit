@@ -50,7 +50,7 @@ class OnBoardingScreen extends StatelessWidget {
               ),
               image: Image.asset('images/onboarding2.jpg'),
               bodyWidget: Text(
-                "Simply signup and add your task and see magic",
+                "Simply add your goal and track to magic",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
               ),
