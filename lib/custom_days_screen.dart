@@ -68,8 +68,13 @@ class _CustomDaysScreenState extends State<CustomDaysScreen> {
                 onPressed: () {
                   saveTask();
                   print(int.parse(daysCtrl.text));
-                  Get.off(() => DetailScreen(
-                      habit: widget.habit, days: int.parse(daysCtrl.text)));
+                  if (int.parse(daysCtrl.text) <= 0) {
+                    Fluttertoast.showToast(
+                        msg: "Day(s) value must be greater than or equal to 1");
+                  } else {
+                    Get.off(() => DetailScreen(
+                        habit: widget.habit, days: int.parse(daysCtrl.text)));
+                  }
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.blue[800]),

@@ -95,7 +95,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     Padding(
                       padding: EdgeInsets.all(20),
                       child: Text(
-                        '$difference days out of ${widget.days} completed',
+                        '$difference day(s) out of ${widget.days} completed',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 33, fontWeight: FontWeight.w500),
