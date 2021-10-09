@@ -24,7 +24,7 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   final date2 = DateTime.now();
   int difference = 0;
-  double progressPercent = 0.0;
+  int progressPercent = 0;
 
   getPercent() async {
     var prefs = await SharedPreferences.getInstance();
