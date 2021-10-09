@@ -34,9 +34,11 @@ class _DetailScreenState extends State<DetailScreen> {
     DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(setDate!);
 
     difference = date2.difference(dateTime).inDays;
+
     setState(() {
-            progressPercent = ((difference / widget.days)*100).round();
+      progressPercent = ((difference / widget.days)*100).round();
     });
+
 
     print("percent" + progressPercent.toString());
     print(difference);
@@ -85,7 +87,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       animateFromLastPercent: true,
                       percent: progressPercent / 100,
                       center: Text(
-                        "${progressPercent.ceil().toString()}%",
+                        "$progressPercent %",
                         style: TextStyle(
                             fontSize: 55, fontWeight: FontWeight.bold),
                       ),
@@ -95,7 +97,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     Padding(
                       padding: EdgeInsets.all(20),
                       child: Text(
-                        '$difference day(s) out of ${widget.days} completed',
+                        '$difference days out of ${widget.days} completed',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 33, fontWeight: FontWeight.w500),
