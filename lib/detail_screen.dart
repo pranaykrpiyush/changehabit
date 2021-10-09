@@ -35,7 +35,7 @@ class _DetailScreenState extends State<DetailScreen> {
 
     difference = date2.difference(dateTime).inDays;
     setState(() {
-      progressPercent = (difference / widget.days);
+            progressPercent = ((difference / widget.days)*100).round();
     });
 
     print("percent" + progressPercent.toString());
