@@ -19,7 +19,9 @@ class _CustomDaysScreenState extends State<CustomDaysScreen> {
   Future saveTask() async {
     //taskCount++;
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('task', daysCtrl.text);
+    prefs.setInt('goal', int.parse(daysCtrl.text));
+    
+    prefs.setString('task', widget.habit);
     int timestamp = DateTime.now().millisecondsSinceEpoch;
 
 //    final prefs = await SharedPreferences.getInstance();
